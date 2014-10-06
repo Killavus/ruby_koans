@@ -14,9 +14,15 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  raise TriangleError.new if triangle_is_invalid(a, b, c)
   return :equilateral if all_sides_equal(a, b, c)
   return :isosceles   if two_sides_equal(a, b, c)
   :scalene
+end
+
+def triangle_is_invalid(a, b, c)
+  x, y, z = [a, b, c].sort
+  x + y <= z 
 end
 
 def all_sides_equal(a, b, c)
